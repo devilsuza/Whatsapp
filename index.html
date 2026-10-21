@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="auth">
+  <div class="auth-box">
+    <h2>WhatsApp</h2>
+    <div class="tabs"><button onclick="showTab('login')" id="t-login" class="active">Login</button><button onclick="showTab('signup')" id="t-signup">Sign Up</button><button onclick="showTab('forgot')" id="t-forgot">Forgot?</button></div>
+    
+    <div id="loginTab">
+      <input id="l-username" placeholder="Username">
+      <input id="l-password" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
+    <div id="signupTab" style="display:none">
+      <input id="s-username" placeholder="Username">
+      <input id="s-email" placeholder="Email ID">
+      <input id="s-password" type="password" placeholder="Password">
+      <input id="s-repeat" type="password" placeholder="Repeat Password">
+      <button onclick="signup()">Create Account</button>
+    </div>
+    <div id="forgotTab" style="display:none">
+      <input id="f-email" placeholder="Enter your Email ID">
+      <button onclick="forgot()">Send OTP</button>
+      <div id="resetArea" style="display:none">
+        <input id="f-otp" placeholder="Enter OTP from Email">
+        <input id="f-newpass" type="password" placeholder="New Password">
+        <button onclick="resetPass()">Reset Password</button>
+      </div>
+    </div>
+    <p id="authMsg"></p>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="sidebar"><div class="header"><b id="myName"></b></div><div id="userList"></div></div>
+  <div class="chat-area"><div class="chat-header"><span id="chatWith">Select user to chat</span><span><button onclick="startCall(false)">📞</button> <button onclick="startCall(true)">🎥</button></span></div><div id="messages"></div><div id="typing"></div><div class="input-area"><input id="msgInput" placeholder="Type message" oninput="onTyping()"><button onclick="sendMessage()">➤</button></div></div>
+</div>
+
+<div id="callScreen" style="display:none"><video id="localVideo" autoplay muted></video><video id="remoteVideo" autoplay></video><button onclick="endCall()" class="endCall">End Call</button><p id="callStatus"></p></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
